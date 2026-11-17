@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Enterprise Dashboard</h1>
+
+        <nav aria-label="Main navigation">
+            <a href="#overview">Overview</a>
+            <a href="users.html">Users</a>
+            <a href="reports.html">Reports</a>
+            <a href="#settings">Settings</a>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside aria-label="Sidebar navigation">
+        <h2>Dashboard Menu</h2>
+
+        <nav aria-label="Dashboard sections">
+            <ul>
+                <li><a href="#overview">Dashboard</a></li>
+                <li><a href="users.html">User Management</a></li>
+                <li><a href="reports.html">Reports</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Overview -->
+        <section id="overview">
+            <h2>Overview</h2>
+
+            <article>
+                <h3>Welcome to the Dashboard</h3>
+                <p>Manage employees, view reports and update information.</p>
+            </article>
+        </section>
+
+        <!-- Employee Table -->
+        <section id="users">
+            <h2>User Management</h2>
+
+            <table>
+                <caption>Employee Details</caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>EMP001</td>
+                        <td>Arun</td>
+                        <td>Development</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr>
+                        <td>EMP002</td>
+                        <td>Priya</td>
+                        <td>Design</td>
+                        <td>Active</td>
+                    </tr>
+
+                    <tr>
+                        <td>EMP003</td>
+                        <td>Kavin</td>
+                        <td>Testing</td>
+                        <td>Inactive</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Reports -->
+        <section id="reports">
+            <h2>Reports</h2>
+
+            <article>
+                <h3>Monthly Report</h3>
+                <p>Employee activity and department information.</p>
+            </article>
+        </section>
+
+        <!-- Accessible Form -->
+        <section id="settings">
+            <h2>Employee Registration</h2>
+
+            <form id="employeeForm">
+
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <label for="employeeName">Full Name:</label>
+                    <input
+                        type="text"
+                        id="employeeName"
+                        name="employeeName"
+                        autocomplete="name"
+                        required
+                        minlength="3"
+                    >
+
+                    <label for="employeeEmail">Email Address:</label>
+                    <input
+                        type="email"
+                        id="employeeEmail"
+                        name="employeeEmail"
+                        autocomplete="email"
+                        required
+                    >
+
+                    <label for="department">Department:</label>
+                    <select id="department" name="department" required>
+                        <option value="">Select Department</option>
+                        <option value="Development">Development</option>
+                        <option value="Design">Design</option>
+                        <option value="Testing">Testing</option>
+                    </select>
+
+                    <button type="submit">Register Employee</button>
+
+                </fieldset>
+            </form>
+
+            <p id="formMessage" role="status" aria-live="polite"></p>
+        </section>
+
+        <!-- Modal Dialog -->
+        <section id="modal-section">
+            <h2>More Information</h2>
+
+            <button type="button" id="openModal">
+                Open Information Dialog
+            </button>
+
+            <dialog id="infoDialog" aria-labelledby="dialogTitle">
+                <h2 id="dialogTitle">Dashboard Information</h2>
+
+                <p>This dashboard helps manage employee information.</p>
+
+                <button type="button" id="closeModal">
+                    Close Dialog
+                </button>
+            </dialog>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Enterprise Dashboard - 2026</p>
+        <p>Accessible and User-Friendly Interface</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const dialog = document.getElementById("infoDialog");
+
+        document.getElementById("openModal").addEventListener("click", function () {
+            dialog.showModal();
+        });
+
+        document.getElementById("closeModal").addEventListener("click", function () {
+            dialog.close();
+        });
+
+        document.getElementById("employeeForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            document.getElementById("formMessage").textContent =
+                "Employee information submitted successfully.";
+
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
