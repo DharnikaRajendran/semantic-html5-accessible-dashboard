@@ -1,51 +1,132 @@
 
-/* General Styling */
+/* ========================================
+   TASK 4 - RESPONSIVE DESIGN ARCHITECTURE
+   ======================================== */
+
+/* 1. DESIGN TOKENS */
+:root {
+    --primary: #172554;
+    --primary-light: #1d4ed8;
+    --accent: #38bdf8;
+
+    --bg: #f1f5f9;
+    --surface: rgba(255, 255, 255, 0.88);
+    --text: #263238;
+    --muted: #64748b;
+    --border: #cbd5e1;
+
+    --font-main: Arial, sans-serif;
+    --text-sm: 14px;
+    --text-md: 16px;
+    --text-lg: 24px;
+    --text-xl: 30px;
+
+    --space-1: 5px;
+    --space-2: 10px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 32px;
+
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+
+    --shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+    --transition: 0.3s ease;
+}
+
+/* 2. DARK THEME VARIABLES */
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --surface: rgba(30, 41, 59, 0.9);
+    --text: #f1f5f9;
+    --muted: #cbd5e1;
+    --border: #475569;
+}
+
+/* 3. GENERAL STYLING */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6fa;
-    color: #263238;
-    line-height: 1.6;
+html {
+    scroll-behavior: smooth;
 }
 
-/* Header */
+body {
+    font-family: var(--font-main);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-width: 320px;
+    overflow-x: hidden;
+    transition: background var(--transition),
+                color var(--transition);
+}
+
+/* 4. HEADER AND NAVIGATION */
 header {
-    background-color: #172554;
+    background: var(--primary);
     color: white;
-    padding: 22px 30px;
+    padding: var(--space-4);
+    box-shadow: var(--shadow);
 }
 
 header h1 {
-    margin-bottom: 15px;
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-3);
 }
 
 header nav {
     display: flex;
-    gap: 25px;
+    align-items: center;
     flex-wrap: wrap;
+    gap: var(--space-4);
 }
 
 header nav a {
     color: white;
     text-decoration: none;
+    transition: color var(--transition);
 }
 
-/* Sidebar */
+header nav a:hover {
+    color: var(--accent);
+}
+
+/* 5. DASHBOARD GRID */
+body {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+}
+
+header {
+    grid-area: header;
+}
+
 aside {
-    background-color: #e2e8f0;
-    padding: 25px;
-    width: 230px;
-    min-height: 100%;
-    float: left;
+    grid-area: sidebar;
+    background: var(--surface);
+    padding: var(--space-4);
+    min-width: 0;
+    backdrop-filter: blur(12px);
 }
 
+main {
+    grid-area: main;
+    padding: var(--space-5);
+    min-width: 0;
+}
+
+/* 6. SIDEBAR */
 aside h2 {
-    margin-bottom: 15px;
+    margin-bottom: var(--space-3);
 }
 
 aside ul {
@@ -53,65 +134,77 @@ aside ul {
 }
 
 aside li {
-    margin: 12px 0;
+    margin: var(--space-3) 0;
 }
 
 aside a {
-    color: #172554;
+    color: var(--text);
     text-decoration: none;
+    transition: color var(--transition);
 }
 
-/* Main Content */
-main {
-    margin-left: 250px;
-    padding: 30px;
+aside a:hover {
+    color: var(--primary-light);
 }
 
+/* 7. CONTENT CARDS */
 section {
-    background-color: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 10px;
+    background: var(--surface);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(12px);
+    transition: transform var(--transition),
+                box-shadow var(--transition);
+}
+
+section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
 }
 
 h2 {
-    margin-bottom: 15px;
-    color: #172554;
+    color: var(--primary-light);
+    margin-bottom: var(--space-3);
+    font-size: var(--text-lg);
 }
 
 article {
-    padding: 15px;
-    background-color: #f1f5f9;
-    border-radius: 8px;
+    padding: var(--space-3);
+    background: var(--bg);
+    border-radius: var(--radius-sm);
 }
 
-/* Table */
+/* 8. TABLES */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: var(--space-3);
 }
 
 caption {
     font-weight: bold;
-    padding: 10px;
+    padding: var(--space-2);
 }
 
 th, td {
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--border);
     padding: 12px;
     text-align: left;
 }
 
 th {
-    background-color: #dbeafe;
+    background: #dbeafe;
+    color: #172554;
 }
 
-/* Forms */
+/* 9. FORMS */
 fieldset {
-    padding: 20px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+    padding: var(--space-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
 }
 
 legend {
@@ -120,33 +213,38 @@ legend {
 
 label {
     display: block;
-    margin-top: 15px;
+    margin-top: var(--space-3);
 }
 
 input, select {
     width: 100%;
     padding: 12px;
-    margin-top: 5px;
-    border: 1px solid #94a3b8;
-    border-radius: 5px;
+    margin-top: var(--space-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
 }
 
-/* Buttons */
+/* 10. BUTTONS */
 button {
-    background-color: #1d4ed8;
+    background: var(--primary-light);
     color: white;
     padding: 12px 20px;
-    margin-top: 15px;
+    margin-top: var(--space-3);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
+    transition: background var(--transition),
+                transform var(--transition);
 }
 
 button:hover {
-    background-color: #1e40af;
+    background: var(--primary);
+    transform: translateY(-2px);
 }
 
-/* Keyboard Focus */
+/* 11. ACCESSIBILITY FOCUS */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -155,41 +253,118 @@ select:focus-visible {
     outline-offset: 3px;
 }
 
-/* Modal */
+/* 12. MODAL */
 dialog {
     margin: auto;
-    padding: 30px;
+    padding: var(--space-5);
     border: none;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     max-width: 450px;
+    width: calc(100% - 32px);
+    background: var(--surface);
+    color: var(--text);
+    box-shadow: var(--shadow);
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
 }
 
-/* Footer */
+/* 13. FOOTER */
 footer {
-    clear: both;
-    background-color: #172554;
+    grid-area: footer;
+    background: var(--primary);
     color: white;
     text-align: center;
-    padding: 20px;
+    padding: var(--space-4);
 }
 
-/* Responsive Layout */
-@media (max-width: 700px) {
-    aside {
-        float: none;
-        width: 100%;
+/* 14. TABLET - 768px */
+@media (max-width: 1023px) {
+    body {
+        grid-template-columns: 190px minmax(0, 1fr);
     }
 
     main {
-        margin-left: 0;
-        padding: 15px;
+        padding: var(--space-4);
+    }
+
+    header h1 {
+        font-size: var(--text-lg);
+    }
+}
+
+/* 15. MOBILE - 320px to 767px */
+@media (max-width: 767px) {
+    body {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "header"
+            "sidebar"
+            "main"
+            "footer";
+    }
+
+    header {
+        padding: var(--space-3);
+    }
+
+    header nav {
+        gap: var(--space-2);
+    }
+
+    aside {
+        width: 100%;
+        padding: var(--space-3);
+    }
+
+    aside ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+    }
+
+    aside li {
+        margin: 0;
+    }
+
+    main {
+        padding: var(--space-3);
+    }
+
+    section {
+        padding: var(--space-3);
     }
 
     table {
-        font-size: 13px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width: 100%;
     }
+
+    header h1 {
+        font-size: 22px;
+    }
+}
+
+/* 16. LARGE DESKTOP - 1440px */
+@media (min-width: 1440px) {
+    body {
+        grid-template-columns: 260px minmax(0, 1fr);
+    }
+
+    main {
+        padding: 40px;
+    }
+}
+
+/* 17. SMALL SCREEN SAFETY */
+img, video, iframe {
+    max-width: 100%;
+}
+
+input, select, button {
+    max-width: 100%;
 }
