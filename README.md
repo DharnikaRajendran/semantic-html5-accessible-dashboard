@@ -62,5 +62,27 @@ Result: Zero errors and warnings.
 
 \## Author
 
-Dharnika
+DHARNIKA
+
+\## Task 4 – Responsive Design Tokens \& Mobile-First CSS
+
+
+
+\- Created reusable CSS design tokens using `:root`.
+
+\- Added light and dark theme variables.
+
+\- Implemented responsive dashboard layouts using CSS Grid and Flexbox.
+
+\- Added fluid breakpoints for 320px, 768px, 1024px, and 1440px.
+
+\- Included glassmorphism effects, shadows, and hover transitions.
+
+\- Tested the layout at all four viewport sizes with no horizontal page scrolling.
+
+
+
+\### Responsive Screenshots
+
+See the `screenshots/` folder for mobile, tablet, and desktop previews.
 
