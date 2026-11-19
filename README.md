@@ -85,4 +85,16 @@ DHARNIKA
 \### Responsive Screenshots
 
 See the `screenshots/` folder for mobile, tablet, and desktop previews.
+## Task 5 – Dynamic JavaScript DOM Logic & RESTful API Client
+
+- Integrated FakeStoreAPI using async/await and Fetch API.
+- Implemented dynamic product search and category filtering.
+- Added price and rating-based sorting.
+- Used LocalStorage to save cart items.
+- Implemented loading indicators and API error handling.
+- Updated the DOM dynamically without page reloads.
+
+### JavaScript Files
+- `api.js` – API data fetching.
+- `app.js` – Search, filtering, sorting and cart logic.
 
